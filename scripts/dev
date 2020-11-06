@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+echo "Starting"
+
+node \
+  --experimental-json-modules \
+  --experimental-wasm-modules \
+  -r dotenv-flow/config \
+  start.js
+
+echo "started"

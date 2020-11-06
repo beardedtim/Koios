@@ -1,0 +1,50 @@
+#!/bin/bash
+set -e
+
+WARNING_EMOJI="🚨"
+CONSTRUCTION_EMOJI="🚧"
+CONSTRUCTION_WORKER_EMOJI="👷"
+
+if [[ -z "${ROUTES_DIR}" ]]; then
+  echo "$WARNING_EMOJI You did not give this script a ROUTES_DIR variable. I am going to assume you are using '$PWD/routes' as your path"
+  echo ""
+  ROUTES_DIR="$PWD/routes"
+fi
+
+echo "$CONSTRUCTION_EMOJI Creating the route"
+
+if [[ -z "${ROUTES_TEMPLATE}" ]]; then
+  echo "$WARNING_EMOJI You did not give this script a ROUTES_TEMPLATE variable. I am going to assume you are using '$PWD/templates/route' as your path"
+  echo ""
+  TEMPLATES_DIR="$PWD/templates/route"
+fi
+
+if [ -z "$1" ]; then
+    echo "$WARNING_EMOJI You did not give me a name for the route. I will now error"
+    echo ""
+    exit 1
+fi
+
+if [ -z "$2" ]; then
+    VERSION="1"
+    echo "$WARNING_EMOJI You did not give me a name for the route. I will now assume you are using v1 still"
+    echo ""
+else
+  VERSION="$2"
+fi
+
+ROUTE_NAME="$1"
+
+ROUTE_PATH="$ROUTES_DIR/v$VERSION/$ROUTE_NAME"
+
+echo "$CONSTRUCTION_WORKER_EMOJI Creating route at '$ROUTE_PATH'"
+
+if [ -d "$ROUTE_PATH" ]; then
+  echo "$WARNING_EMOJI Route already exists. Skipping"
+
+else
+  cp -R $TEMPLATES_DIR $ROUTE_PATH
+fi
+
+
+

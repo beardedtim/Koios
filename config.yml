@@ -1,0 +1,43 @@
+# Some human-readable name of the service
+# Used in logging
+name: Koios
+
+# Some human-readable description of the service
+description: |
+  A way to ask your data questions, regardless of when you
+  realise the question you want to ask is.
+
+# Base URL to add to the documentation
+base_url: https://example.com
+
+# Give a path that houses our path-based routes and their
+# handler + config
+routes: ./routes
+
+# These are common definitions of types that any config down
+# the line can use
+definitions:
+  Resource:
+    type: object
+    required: ['id', 'name']
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: The ID of the resource
+      name:
+        type: string
+        descriptiong: The Name of the resource
+
+  HttpError:
+    type: object
+    required: ['message', 'status']
+    properties:
+      message:
+        type: string
+        description: The human-readable error message that helps with debugging.
+        example: Uh-oh! We can't find that page. Sorry!
+      status:
+        type: integer
+        minimum: 400
+        maximum: 599

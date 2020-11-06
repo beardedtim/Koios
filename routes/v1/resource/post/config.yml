@@ -1,0 +1,41 @@
+# Human-Readable name for this route
+name: Creates a Resource
+
+# Human-Readable description for this route
+description: |
+  This route gives the end-user the ability to create
+  a resource
+
+authentication:
+  - Bearer
+
+input:
+  body:
+    type: object
+    required: ['name']
+    properties:
+      name:
+        type: string
+        description: The name that you want to attach to this resource
+        example: Deve Blobs
+
+# If you want to allow the outputs to not be so strictly checked
+# sloppy: true
+
+output:
+  # For output, we might have multiple
+  # types depending on the result of the
+  # request. Each output must have a status
+  # which is the HTTP Status that corresponds
+  # to the schema described
+  - status: 201
+    body:
+      type: object
+      required: ['data']
+      properties:
+        data:
+          $ref: "#/definitions/Resource"
+  - status: 404
+    body:
+      error:
+        $ref: "#/definitions/HttpError"
