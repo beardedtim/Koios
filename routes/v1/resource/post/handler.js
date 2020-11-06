@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+import { v4 as uuid } from 'uuid'
 
 /**
  * @type {import('../../../../src/middleware/route').Handler}
@@ -10,6 +10,6 @@ export default (req, res) => ({
   },
   status: 201,
   headers: {
-    "X-Joke": "my life",
+    'X-Joke': 'my life',
   },
-});
+})

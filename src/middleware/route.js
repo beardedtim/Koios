@@ -19,9 +19,9 @@
  */
 export default (handler) => async (req, res, next) => {
   try {
-    const { data, status, headers = {} } = await handler(req, res);
-    res.status(status).set(headers).json({ data });
+    const { data, status, headers = {} } = await handler(req, res)
+    res.status(status).set(headers).json({ data })
   } catch (e) {
-    next(e);
+    next(e)
   }
-};
+}

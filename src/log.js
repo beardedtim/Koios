@@ -1,6 +1,6 @@
-import Pino from "pino";
-import R from "ramda";
-import * as Env from "./config/env.js";
+import Pino from 'pino'
+import R from 'ramda'
+import * as Env from './config/env.js'
 
 export default Pino({
   name: Env.name,
@@ -12,6 +12,6 @@ export default Pino({
     }),
     R.always(undefined)
   ),
-  redact: ["password", "*.password"],
+  redact: ['password', '*.password'],
   serializers: Pino.stdSerializers,
-});
+})

@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon -r dotenv-flow/config --exec \"./scripts/dev\"",
-    "fmt": "prettier --write {src,routes,templates}/**/*.js"
+    "fmt": "prettier --write {src,routes,templates}/**/*.{js,yml}"
   },
   "devDependencies": {
     "ava": "^3.13.0",

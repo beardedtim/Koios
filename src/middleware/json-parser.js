@@ -1,3 +1,3 @@
-import BodyParser from "body-parser";
+import BodyParser from 'body-parser'
 
-export default BodyParser.json;
+export default BodyParser.json

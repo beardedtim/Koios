@@ -34,8 +34,8 @@ output:
       required: ['data']
       properties:
         data:
-          $ref: "#/definitions/Resource"
+          $ref: '#/definitions/Resource'
   - status: 404
     body:
       error:
-        $ref: "#/definitions/HttpError"
+        $ref: '#/definitions/HttpError'

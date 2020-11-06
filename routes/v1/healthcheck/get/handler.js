@@ -1,8 +1,8 @@
-const started = Date.now();
+const started = Date.now()
 
 export default async (_, __) => ({
   data: {
-    uptime: Date.now() - started + "ms",
+    uptime: Date.now() - started + 'ms',
   },
   status: 200,
-});
+})

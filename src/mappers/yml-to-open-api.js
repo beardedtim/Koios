@@ -1,7 +1,7 @@
-import R from "ramda";
+import R from 'ramda'
 
 export default (yml) => {
-  const name = R.propOr("UNKNOWN_SERVICE", "name", yml);
+  const name = R.propOr('UNKNOWN_SERVICE', 'name', yml)
 
-  return { name };
-};
+  return { name }
+}
