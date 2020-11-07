@@ -6,6 +6,9 @@
 It is opinionated in all the right ways and flexible to allow you to have
 the API you need to solve your problems.
 
+It helps you build [OpenAPI](https://swagger.io/specification/) Compliant APIs
+that are validated both on the incoming body but the outgoing ones as well.
+
 ## Quick Start
 
 ```shell
@@ -53,13 +56,3 @@ yarn dev
     --method get \
     route/path/:var
   ```
-
-
-## Features
-
-- Structured Logging
-  - Koios uses the [pino](https://github.com/pinojs/pino)
-- Path-Based Routing
-  - Given a directory, Koios will walk that directory, parsing it for `handler.js` and `config.yml`
-  that are under HTTP verbs
-

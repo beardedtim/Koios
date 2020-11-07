@@ -5,7 +5,7 @@
   "type": "module",
   "repository": "git@github.com:beardedtim/Koios.git",
   "author": "Tim Roberts <timroberts@fastmail.org>",
-  "license": "MIT",
+  "license": "UNLICESENED",
   "engines": {
     "node": "^15.1"
   },
