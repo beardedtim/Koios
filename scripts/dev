@@ -9,5 +9,3 @@ node \
   --experimental-wasm-modules \
   -r dotenv-flow/config \
   start.js
-
-echo "started"

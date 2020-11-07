@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid'
 
 /**
- * @type {import('../../../../src/middleware/route').Handler}
+ * 
  */
 export default (req, res) => ({
   data: {
