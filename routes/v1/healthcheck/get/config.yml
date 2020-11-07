@@ -1,13 +1,10 @@
 # Human-Readable name for this route
-name: Creates a Resource
+name: Health Check
 
 # Human-Readable description for this route
 description: |
-  This route gives the end-user the ability to create
-  a resource
-
-authentication:
-  - Bearer
+  Allows the caller to see what the health of the
+  system is 
 
 # If you want to allow the outputs to not be so strictly checked
 # sloppy: true
@@ -25,11 +22,11 @@ output:
       properties:
         data:
           type: object
-
-  - status: 404
-    body:
-      error:
-        $ref: '#/definitions/HttpError'
+          required: ['uptime']
+          properties:
+            uptime:
+              type: string
+              description: The amount of time, in milliseconds, the system has been alive
 
   - status: 500
     body:

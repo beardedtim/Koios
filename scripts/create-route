@@ -8,7 +8,7 @@ WARNING_EMOJI="🚨"
 ROUTES_DIR="$PWD/routes"
 SCRIPT="$PWD/scripts/create-route"
 TEMPLATES_DIR="$PWD/templates"
-VERSION="0.0.0"
+VERSION="1"
 METHOD="get"
 
 POSITIONAL=()
