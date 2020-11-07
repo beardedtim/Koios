@@ -18,7 +18,7 @@ output:
   # request. Each output must have a status
   # which is the HTTP Status that corresponds
   # to the schema described
-  - status: 201
+  - status: 200
     body:
       type: object
       required: ['data']
