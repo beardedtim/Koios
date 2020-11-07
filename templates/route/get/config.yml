@@ -9,16 +9,6 @@ description: |
 authentication:
   - Bearer
 
-input:
-  body:
-    type: object
-    required: ['name']
-    properties:
-      name:
-        type: string
-        description: The name that you want to attach to this resource
-        example: Deve Blobs
-
 # If you want to allow the outputs to not be so strictly checked
 # sloppy: true
 
@@ -34,7 +24,8 @@ output:
       required: ['data']
       properties:
         data:
-          $ref: '#/definitions/Resource'
+          type: object
+
   - status: 404
     body:
       error:

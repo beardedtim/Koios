@@ -1,50 +1,70 @@
 #!/bin/bash
 set -e
 
+# EMOJIS
 WARNING_EMOJI="🚨"
-CONSTRUCTION_EMOJI="🚧"
-CONSTRUCTION_WORKER_EMOJI="👷"
 
-if [[ -z "${ROUTES_DIR}" ]]; then
-  echo "$WARNING_EMOJI You did not give this script a ROUTES_DIR variable. I am going to assume you are using '$PWD/routes' as your path"
-  echo ""
-  ROUTES_DIR="$PWD/routes"
-fi
+# DEFAULTS
+ROUTES_DIR="$PWD/routes"
+SCRIPT="$PWD/scripts/create-route"
+TEMPLATES_DIR="$PWD/templates"
+VERSION="0.0.0"
+METHOD="get"
 
-echo "$CONSTRUCTION_EMOJI Creating the route"
+POSITIONAL=()
 
-if [[ -z "${ROUTES_TEMPLATE}" ]]; then
-  echo "$WARNING_EMOJI You did not give this script a ROUTES_TEMPLATE variable. I am going to assume you are using '$PWD/templates/route' as your path"
-  echo ""
-  TEMPLATES_DIR="$PWD/templates"
-fi
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    -h|--help)
+      echo "$SCRIPT -- Create a new Route"
+      echo "Usage:"
+      echo "$SCRIPT <<FLAGS>> <<Route Path>>"
+      echo ""
+      echo "-h, --help                       Help Menu"
+      echo "-r, --routes-dir          Routes directory"
+      echo "-t, --templates-dir     Template Directory"
+      echo "-m, --method                   HTTP Method"
+      echo "-v, --version            Version to Add To"
+      exit
+    ;;
+    -r|--routes-dir)
+    ROUTES_DIR="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    -t|--templates-dir)
+      TEMPLATES_DIR="$2"
+      shift
+      shift
+    ;;
+    -v|--version)
+      VERSION="$2"
+      shift
+      shift
+    ;;
+    -m|--method)
+      METHOD=$(echo "$2" | tr '[:upper:]' '[:lower:]')
+      shift
+      shift
+    ;;
+    *)    # unknown option
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+done
 
-if [ -z "$1" ]; then
-    echo "$WARNING_EMOJI You did not give me a name for the route. I will now error"
-    echo ""
-    exit 1
-fi
 
-if [ -z "$2" ]; then
-    VERSION="1"
-    echo "$WARNING_EMOJI You did not give me a name for the route. I will now assume you are using v1 still"
-    echo ""
-else
-  VERSION="$2"
-fi
+ROUTE_NAME=${POSITIONAL[0]}
 
-ROUTE_NAME="$1"
-
-ROUTE_PATH="$ROUTES_DIR/v$VERSION/$ROUTE_NAME"
-
-echo "$CONSTRUCTION_WORKER_EMOJI Creating route at '$ROUTE_PATH'"
+ROUTE_PATH="$ROUTES_DIR/v$VERSION/$ROUTE_NAME/$METHOD"
 
 if [ -d "$ROUTE_PATH" ]; then
   echo "$WARNING_EMOJI Route already exists. Skipping"
+  exit 1
 else
   mkdir -p $ROUTE_PATH
-  cp -RT $TEMPLATES_DIR/route $ROUTE_PATH
+  cp -RT $TEMPLATES_DIR/route/$METHOD $ROUTE_PATH/
 fi
-
-
-

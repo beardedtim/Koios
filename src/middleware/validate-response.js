@@ -53,9 +53,14 @@ export default (config) => (req, res, next) => {
       return res
     } else {
       try {
+        const body_schema = R.view(outputSchemaDefintiion, schema)
+        console.group('INSTANCE')
+        console.dir(body_schema)
+        console.dir(body)
+        console.groupEnd()
         jsonschema.validate(
           body,
-          { ...R.view(outputSchemaDefintiion, schema), definitions },
+          { ...body_schema, definitions },
           { throwAll: true }
         )
         back_res(body)

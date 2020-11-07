@@ -8,7 +8,7 @@ export default (req, res) => ({
     id: uuid(),
     name: req.body.name,
   },
-  status: 200,
+  status: 201,
   headers: {
     'X-Joke': 'my life',
   },
