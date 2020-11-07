@@ -1,10 +1,9 @@
 # Human-Readable name for this route
-name: Creates a Resource
+name: Get a Resource
 
 # Human-Readable description for this route
 description: |
-  This route gives the end-user the ability to create
-  a resource
+  Gets a resource from the storage system
 
 authentication:
   - Bearer
