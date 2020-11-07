@@ -8,7 +8,5 @@ const system = await Create({
   version: Env.version,
 })
 
-console.log(JSON.stringify(system.open_api, null, 2))
-
 await system.server.start()
 system.log.trace('System Server Started')
