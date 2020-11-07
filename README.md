@@ -7,7 +7,10 @@ It is opinionated in all the right ways and flexible to allow you to have
 the API you need to solve your problems.
 
 It helps you build [OpenAPI](https://swagger.io/specification/) Compliant APIs
-that are validated both on the incoming body but the outgoing ones as well.
+that are validated both on the incoming body and the outgoing ones as well.
+It enforces a contract-based development where the engineer builds the configuration,
+describes the inputs and ouputs of the function/HTTP request, and then doesn't allow
+a request to return a 2xx HTTP response until the handler passes that configuration.
 
 ## Quick Start
 
