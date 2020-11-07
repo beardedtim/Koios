@@ -5,13 +5,6 @@ name: <<NAME>>
 description: |
   <<DESCRIPTION>>
 
-input:
-  path:
-    bar:
-      type: string
-      description: |
-        Some random value that you wanted to use!
-
 output:
   - status: 200
     body:

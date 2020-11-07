@@ -47,10 +47,9 @@ export default (config) => (req, res, next) => {
     const schema = schema_by_status(schemas, code)
 
     if (!schema && !config.sloppy) {
-      console.log(schema)
       res.json = back_res
       res.status = back_status
-      next(new InvalidResponse(`No status code matches "${code}".`))
+      next(new InvalidResponse([`No status code matches "${code}".`]))
       return res
     } else {
       try {

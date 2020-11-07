@@ -2,6 +2,7 @@ import path from 'path'
 import fs from 'fs/promises'
 import glob from 'glob'
 import yml from 'js-yaml'
+import R from 'ramda'
 
 const is_relative_path = (f) => f.indexOf('/') !== 0
 
@@ -46,12 +47,20 @@ const get_configs_from_path = async (dir_path) => {
       const method = route_pieces.pop()
       const route = route_pieces.join('/')
 
+      const params = R.pathOr({}, ['input', 'path'], config)
+
       return {
         ...acc,
         [route]: {
+          ...R.propOr({}, route, acc),
           [method]: {
             operationId: config.name,
             description: config.description,
+            parameters: Object.entries(params).map(([key, value]) => ({
+              name: key,
+              in: 'path',
+              ...value
+            })),
             responses: (config.output || []).reduce((acc, output) => {
               return {
                 ...acc,

@@ -13,7 +13,7 @@ name: Koios
 description: |
   A way to ask your data questions, regardless of when you
   realise the question you want to ask is.
-base_url: https://example.com
+base_url: "http://localhost:5050"
 routes: ./routes
 definitions:
   Resource:
