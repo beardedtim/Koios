@@ -40,22 +40,14 @@ yarn dev
     --method get \
     route/path
   ```
+  - Notes:
+    - The path is passed through to `express` as a string. Any value that
+    express understands can be used as the path and will be parsed by express
+      - This means that URL Parameters are built using express syntax: `foo/:bar`
 
 - **Start the System in Development Mode**
   - Command: `yarn dev`
   - Ex:
   ```shell
   yarn dev
-  ```
-
-- **Create a Variable Route**
-  - Command: `yarn create-route --flags route/:var/path/:bar`
-  -- Ex:
-  ```shell
-  yarn create-route \
-    --routes-dir /my/routes/path \
-    --templates-dir /my/templates/path \
-    --version 1 \
-    --method get \
-    route/path/:var
   ```
