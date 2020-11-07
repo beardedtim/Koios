@@ -6,13 +6,25 @@
 It is opinionated in all the right ways and flexible to allow you to have
 the API you need to solve your problems.
 
-## Scripts
+## Quick Start
 
-There are some CLI scripts you can use to make it easier to create
-resources and handlers:
+```shell
+# Clone this repo
+git clone git@github.com:beardedtim/Koios.git
+# Install deps
+yarn
+# Create local .env File
+cp .env.example .env
+# Start System in Development Mode
+yarn dev
+```
+
+- Go to the [swagger docs](http://localhost:5050/api-docs) and see what routes are available
+
+## Usage
 
 - **Create a Route**
-  - Command: `yarn create-route --help`
+  - Command: `yarn create-route --flags route/path`
   - Ex:
   ```shell
   yarn create-route \
@@ -29,3 +41,25 @@ resources and handlers:
   ```shell
   yarn dev
   ```
+
+- **Create a Variable Route**
+  - Command: `yarn create-route --flags route/:var/path/:bar`
+  -- Ex:
+  ```shell
+  yarn create-route \
+    --routes-dir /my/routes/path \
+    --templates-dir /my/templates/path \
+    --version 1 \
+    --method get \
+    route/path/:var
+  ```
+
+
+## Features
+
+- Structured Logging
+  - Koios uses the [pino](https://github.com/pinojs/pino)
+- Path-Based Routing
+  - Given a directory, Koios will walk that directory, parsing it for `handler.js` and `config.yml`
+  that are under HTTP verbs
+

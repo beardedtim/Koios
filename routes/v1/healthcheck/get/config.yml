@@ -4,7 +4,9 @@ name: Health Check
 # Human-Readable description for this route
 description: |
   Allows the caller to see what the health of the
-  system is 
+  system is
+
+tags: ['System']
 
 # If you want to allow the outputs to not be so strictly checked
 # sloppy: true

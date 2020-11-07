@@ -10,6 +10,6 @@ export default async ({ config: configPath, ...meta }) => {
 
   Server.add_routes(routes)
   Server.add_open_api(open_api)
-  
+
   return { open_api, routes, config, server: Server, log: Log }
 }

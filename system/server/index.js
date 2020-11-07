@@ -9,7 +9,7 @@ export const add_routes = (routes) => {
   app.use(routes)
 }
 
-export const add_open_api = config => {
+export const add_open_api = (config) => {
   app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(config))
 }
 
