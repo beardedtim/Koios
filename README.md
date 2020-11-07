@@ -1,11 +1,11 @@
 # Koios
 
-# Scripts
+## Scripts
 
 There are some CLI scripts you can use to make it easier to create
 resources and handlers
 
-- Create a Route
+- **Create a Route**
   - Command: `yarn create-route --help`
   - Ex:
   ```shell
@@ -15,4 +15,11 @@ resources and handlers
     --version 1 \
     --method get \
     route/path
+  ```
+
+- **Start the System in Development Mode**
+  - Command: `yarn dev`
+  - Ex:
+  ```shell
+  yarn dev
   ```
