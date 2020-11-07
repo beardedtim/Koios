@@ -9,4 +9,5 @@ const system = await Create({
 })
 
 await system.server.start()
+
 system.log.trace('System Server Started')
