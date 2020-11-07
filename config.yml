@@ -1,21 +1,20 @@
-# Some human-readable name of the service
-# Used in logging
+#
+# Koios Base Configuration
+#
+# This file houses general information about
+# the system along with some common, shared JSON
+# Schema schemas stored under `defintions`.
+#
+# The purpose of this file is to help bootstrap
+# your system and to generate the OpenAPI specification
+# and your documentation.
+#
 name: Koios
-
-# Some human-readable description of the service
 description: |
   A way to ask your data questions, regardless of when you
   realise the question you want to ask is.
-
-# Base URL to add to the documentation
 base_url: https://example.com
-
-# Give a path that houses our path-based routes and their
-# handler + config
 routes: ./routes
-
-# These are common definitions of types that any config down
-# the line can use
 definitions:
   Resource:
     type: object

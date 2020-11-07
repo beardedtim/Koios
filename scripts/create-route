@@ -16,7 +16,7 @@ echo "$CONSTRUCTION_EMOJI Creating the route"
 if [[ -z "${ROUTES_TEMPLATE}" ]]; then
   echo "$WARNING_EMOJI You did not give this script a ROUTES_TEMPLATE variable. I am going to assume you are using '$PWD/templates/route' as your path"
   echo ""
-  TEMPLATES_DIR="$PWD/templates/route"
+  TEMPLATES_DIR="$PWD/templates"
 fi
 
 if [ -z "$1" ]; then
@@ -41,9 +41,9 @@ echo "$CONSTRUCTION_WORKER_EMOJI Creating route at '$ROUTE_PATH'"
 
 if [ -d "$ROUTE_PATH" ]; then
   echo "$WARNING_EMOJI Route already exists. Skipping"
-
 else
-  cp -R $TEMPLATES_DIR $ROUTE_PATH
+  mkdir -p $ROUTE_PATH
+  cp -RT $TEMPLATES_DIR/route $ROUTE_PATH
 fi
 
 

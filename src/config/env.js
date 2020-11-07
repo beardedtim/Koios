@@ -3,6 +3,7 @@ import R from 'ramda'
 
 export const node_env = env.string('NODE_ENV', 'development')
 export const name = env.string('NAME', '__UNKNOWN__SERVICE__')
+export const version = env.string('VERSION', '0.0.0-DEVELOPMENT-1')
 
 export const is_prod = node_env === 'production'
 export const is_test = node_env === 'test'

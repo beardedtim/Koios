@@ -6,6 +6,9 @@
   "repository": "git@github.com:beardedtim/Koios.git",
   "author": "Tim Roberts <timroberts@fastmail.org>",
   "license": "MIT",
+  "engines": {
+    "node": "^15.1"
+  },
   "scripts": {
     "dev": "nodemon -r dotenv-flow/config --exec \"./scripts/dev\"",
     "fmt": "prettier --write {src,routes,templates}/**/*.{js,yml}"
@@ -30,6 +33,7 @@
     "jsonschema": "^1.4.0",
     "pino": "^6.7.0",
     "ramda": "^0.27.1",
+    "swagger-ui-express": "^4.1.4",
     "uuid": "^8.3.1"
   }
 }
