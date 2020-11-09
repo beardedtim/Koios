@@ -66,5 +66,5 @@ if [ -d "$ROUTE_PATH" ]; then
   exit 1
 else
   mkdir -p $ROUTE_PATH
-  cp -RT $TEMPLATES_DIR/route/$METHOD $ROUTE_PATH/
+  cp -R $TEMPLATES_DIR/route/$METHOD $ROUTE_PATH/
 fi
