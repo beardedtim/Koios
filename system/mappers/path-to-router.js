@@ -76,13 +76,13 @@ const get_routes_from_path = async (dir_path, parentConfig) => {
 export default (fP, cP, config) => {
   let file_path = is_relative_path(fP)
     ? // If it is a relative path, we need
-    // to ensure that we assume they meant
-    // from the directory that they wrote
-    // it in
-    path.resolve(cP, '..', fP)
+      // to ensure that we assume they meant
+      // from the directory that they wrote
+      // it in
+      path.resolve(cP, '..', fP)
     : // If it is not relative, let's return
-    // it as is
-    fP
+      // it as is
+      fP
 
   return get_routes_from_path(file_path, config)
 }

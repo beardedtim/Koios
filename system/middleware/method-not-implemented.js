@@ -6,5 +6,5 @@ import * as Errors from '../errors/index.js'
  * that route
  */
 export default () => (req, res, next) => {
-    return next(new Errors.MethodNotImplemented(req.method))
+  return next(new Errors.MethodNotImplemented(req.method))
 }

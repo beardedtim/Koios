@@ -9,6 +9,10 @@ export default (route, router, config) => {
   // Each route might also produce some output
   // that we want to validate as well
   const postware = []
+  
+  if (config.authentication) {
+    preware.push(Middleware.authenticate(config, 'authorization'))
+  }
 
   // If we are expecting specific things
   // from input, we need to validate it!
@@ -26,11 +30,7 @@ export default (route, router, config) => {
 
   const route_handler = Middleware.route(route.handler)
 
-  const handler_list = [
-    ...preware,
-    route_handler,
-    ...postware,
-  ]
+  const handler_list = [...preware, route_handler, ...postware]
 
   return router[route.method](route.path, ...handler_list)
 }

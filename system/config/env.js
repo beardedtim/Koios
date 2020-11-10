@@ -12,3 +12,5 @@ export const is_dev = R.all(Boolean, [!is_prod, !is_stag, !is_test])
 
 export const port = env.int('PORT', 5050)
 export const log_level = env.string('LOG_LEVEL', 'debug')
+
+export const jwt_secret = env.string('JWT_SECRET', 'I am the secret value')
