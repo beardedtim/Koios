@@ -30,7 +30,6 @@ export default (route, router, config) => {
     ...preware,
     route_handler,
     ...postware,
-    Middleware.errorHandler(),
   ]
 
   return router[route.method](route.path, ...handler_list)

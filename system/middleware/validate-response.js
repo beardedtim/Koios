@@ -1,5 +1,6 @@
 import R from 'ramda'
 import jsonschema from 'jsonschema'
+import * as Errors from '../errors/index.js'
 
 const bodyOutputs = R.lensPath(['output'])
 const schemaDefinitions = R.lensPath(['definitions'])
@@ -9,17 +10,6 @@ const outputSchemaDefintiion = R.lensPath(['body'])
 const schema_by_status = R.curryN(2, (schemas, status) =>
   R.find(R.propEq('status', status), schemas)
 )
-
-class InvalidResponse extends Error {
-  constructor(reasons) {
-    super()
-
-    this.message = `The response from this server was unacceptable due to
-    ${reasons.join('\n')}.
-Fix the server or turn it on sloppy mode.`
-    this.code = 500
-  }
-}
 
 export default (config) => (req, res, next) => {
   const schemas = R.view(bodyOutputs, config)
@@ -49,7 +39,8 @@ export default (config) => (req, res, next) => {
     if (!schema && !config.sloppy) {
       res.json = back_res
       res.status = back_status
-      next(new InvalidResponse([`No status code matches "${code}".`]))
+      next(new Errors.InvalidResponse([`No status code matches "${code}".`]))
+
       return res
     } else {
       try {
@@ -63,7 +54,7 @@ export default (config) => (req, res, next) => {
         back_res(body)
         return res
       } catch (e) {
-        next(new InvalidResponse(e.errors))
+        next(new Errors.InvalidResponse(e.errors))
       }
     }
   }

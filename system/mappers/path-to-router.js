@@ -5,7 +5,7 @@ import yml from 'js-yaml'
 import R from 'ramda'
 
 import configToRoute from './config-to-route.js'
-
+import * as Middleware from '../middleware/index.js'
 import * as Router from '../router/index.js'
 
 const is_relative_path = (f) => f.indexOf('/') !== 0
@@ -60,25 +60,29 @@ const get_routes_from_path = async (dir_path, parentConfig) => {
       })
     )
 
-  return routes.reduce((router, route, i) => {
+  const router = routes.reduce((router, route, i) => {
     const config = configs[i]
 
     const merged_routes = R.mergeDeepLeft(config, parentConfig)
 
     return configToRoute(route, router, merged_routes)
   }, Router.create())
+
+  return router
+    .use(Middleware.methodNotImplemented())
+    .use(Middleware.errorHandler())
 }
 
 export default (fP, cP, config) => {
   let file_path = is_relative_path(fP)
     ? // If it is a relative path, we need
-      // to ensure that we assume they meant
-      // from the directory that they wrote
-      // it in
-      path.resolve(cP, '..', fP)
+    // to ensure that we assume they meant
+    // from the directory that they wrote
+    // it in
+    path.resolve(cP, '..', fP)
     : // If it is not relative, let's return
-      // it as is
-      fP
+    // it as is
+    fP
 
   return get_routes_from_path(file_path, config)
 }
