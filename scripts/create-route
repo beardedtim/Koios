@@ -13,6 +13,7 @@ METHOD="get"
 
 POSITIONAL=()
 
+# Get Flags
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -22,11 +23,11 @@ case $key in
       echo "Usage:"
       echo "$SCRIPT <<FLAGS>> <<Route Path>>"
       echo ""
-      echo "-h, --help                       Help Menu"
-      echo "-r, --routes-dir          Routes directory"
-      echo "-t, --templates-dir     Template Directory"
-      echo "-m, --method                   HTTP Method"
-      echo "-v, --version            Version to Add To"
+      echo "-h, --help                             Help Menu"
+      echo "-r, --routes-dir                Routes directory"
+      echo "-t, --templates-dir           Template Directory"
+      echo "-m, --method                         HTTP Method"
+      echo "-v, --version                  Version to Add To"
       exit
     ;;
     -r|--routes-dir)
@@ -56,15 +57,17 @@ case $key in
 esac
 done
 
-
+# Setting of variables
 ROUTE_NAME=${POSITIONAL[0]}
-
 ROUTE_PATH="$ROUTES_DIR/v$VERSION/$ROUTE_NAME/$METHOD"
 
+# Actually Copying
+# If it already exists
 if [ -d "$ROUTE_PATH" ]; then
   echo "$WARNING_EMOJI Route already exists. Skipping"
   exit 1
 else
+  # Else, copy the template over
   mkdir -p $ROUTE_PATH
-  cp -R $TEMPLATES_DIR/route/$METHOD $ROUTE_PATH/
+  cp -R $TEMPLATES_DIR/route/$METHOD/ $ROUTE_PATH/
 fi

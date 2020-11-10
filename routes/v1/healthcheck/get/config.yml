@@ -8,15 +8,7 @@ description: |
 
 tags: ['System']
 
-# If you want to allow the outputs to not be so strictly checked
-# sloppy: true
-
 output:
-  # For output, we might have multiple
-  # types depending on the result of the
-  # request. Each output must have a status
-  # which is the HTTP Status that corresponds
-  # to the schema described
   - status: 200
     body:
       type: object
