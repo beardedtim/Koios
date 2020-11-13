@@ -8,8 +8,8 @@ export default async ({ config: configPath, ...meta }) => {
   const routes = await Mappers.pathToRouter(config.routes, configPath, config)
   const open_api = await Mappers.ymlToOpenAPI(config, configPath, meta)
 
-  Server.add_routes(routes)
   Server.add_open_api(open_api)
+  Server.add_routes(routes)
 
   return { open_api, routes, config, server: Server, log: Log }
 }

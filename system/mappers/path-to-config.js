@@ -33,6 +33,28 @@ const schema_from_body = (body) => ({
   properties: body,
 })
 
+
+const request_body_from_input = input => {
+  if (!input) {
+    return
+  }
+
+  const { body } = input
+  const description = body.description
+
+  delete body.description
+
+  return {
+    description,
+    required: true,
+    content: {
+      'application/json': {
+        schema: body
+      }
+    }
+  }
+}
+
 const get_configs_from_path = async (dir_path) => {
   const config_paths = await get_files_matching_pattern(
     `${dir_path}/**/+(get|post|patch|put|del|head)/config.yml`
@@ -52,7 +74,7 @@ const get_configs_from_path = async (dir_path) => {
         const route = route_pieces.join('/')
 
         const params = R.pathOr({}, ['input', 'path'], config)
-
+        const requestBody = request_body_from_input(config.input)
         return {
           ...acc,
           [route]: {
@@ -66,6 +88,7 @@ const get_configs_from_path = async (dir_path) => {
                 in: 'path',
                 ...value,
               })),
+              requestBody,
               responses: (config.output || []).reduce((acc, output) => {
                 return {
                   ...acc,
