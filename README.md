@@ -51,3 +51,28 @@ yarn dev
   ```shell
   yarn dev
   ```
+
+## Concepts
+
+_**Sub-Systems**_
+
+The complete project is housed inside of the folder `system` and is made up of multiple
+`sub-systems` such as `server` or `router`. These `sub-systems` are ways to isolate
+functionality similar to a plugin architecture. Please try to house like-minded things with
+each other inside of the sub-system they pertain to.
+
+At the core of it, a `sub-system` is a hash of the following data that the system as whole
+uses to interact with that `sub-system`'s domian:
+
+```js
+{
+  name: 'Sub-System_Name',
+  create: (projectConfig, configPath, projectMeta) => 
+    { /** Whatever return value here is used as the sub-system "value" **/ },
+  init: sub_systems =>
+    { /** Do whatever work you need on startup after creating all sub-systems **/ }
+}
+```
+
+You can use the `system/utils/create_sub_system` handler in order to use the Mappers, Parsers, and Server
+in the dynamic creation of your sub-system. Please reference `system/server.js` for an example.
