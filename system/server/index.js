@@ -1,5 +1,4 @@
 import express from 'express'
-import * as Middleware from '../middleware/index.js'
 import swaggerUI from 'swagger-ui-express'
 import * as Env from '../config/env.js'
 

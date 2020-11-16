@@ -1,7 +1,7 @@
 {
   "name": "@mck-p/koios",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "start.js",
   "type": "module",
   "repository": "git@github.com:beardedtim/Koios.git",
   "author": "Tim Roberts <timroberts@fastmail.org>",
@@ -29,12 +29,13 @@
     "express-pino-logger": "^5.0.0",
     "getenv": "^1.0.0",
     "glob": "^7.1.6",
-    "helmet": "^4.2.0",
+    "hot-shots": "^8.2.0",
     "js-yaml": "^3.14.0",
     "jsonschema": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
     "pino": "^6.7.0",
     "ramda": "^0.27.1",
+    "response-time": "^2.3.2",
     "swagger-ui-express": "^4.1.4",
     "uuid": "^8.3.1"
   }
