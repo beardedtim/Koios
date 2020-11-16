@@ -22,3 +22,20 @@ export const start = () =>
       res(instance)
     })
   })
+
+
+/**
+ * Creates the Server System
+ * 
+ * @param {import('../utils').Config} config
+ * @returns {import('../utils').SubSystem} 
+ */
+export const create_system = ({ mappers, server, parsers, queues }) => ({
+  name: 'server',
+  create: () => server,
+  init: async (sub_systems) => {
+    await server.add_open_api(sub_systems.open_api.system)
+    await server.add_routes(sub_systems.routes.system)
+  },
+  ...server,
+})

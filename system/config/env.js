@@ -17,3 +17,8 @@ export const jwt_secret = env.string('JWT_SECRET', 'I am the secret value')
 
 export const statsd_host = env.string('STATSD_HOST')
 export const statsd_port = env.string('STATSD_PORT')
+
+export const queue_host = env.string('QUEUE_HOST')
+export const queue_port = env.string('QUEUE_PORT')
+export const queue_password = env.string('QUEUE_PASSWORD')
+export const queue_job_retries = env.int('QUEUE_JOB_RETRIES', 5)

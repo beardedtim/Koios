@@ -15,7 +15,12 @@ description: |
   realise the question you want to ask is.
 
 base_url: "http://localhost:5050"
+
+# Folder that houses the path-based routing
 routes: ./routes
+# Folder that houses the queue handlers
+handlers: ./handlers
+
 
 tags:
   - name: System
