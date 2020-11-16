@@ -1,6 +1,6 @@
 import Create from './system/create.js'
 import * as Env from './system/config/env.js'
-
+import parser from '@asyncapi/parser'
 import path from 'path'
 
 const system = await Create({
