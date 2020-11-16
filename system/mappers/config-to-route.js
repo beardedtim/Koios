@@ -4,12 +4,16 @@ export default (route, router, config) => {
   // Each route might have some middleware that
   // needs to get ran for it such as body parsing
   // or authentication
-  const preware = [Middleware.logRequest(), Middleware.requestID(), Middleware.responseTime()]
+  const preware = [
+    Middleware.logRequest(),
+    Middleware.requestID(),
+    Middleware.responseTime(),
+  ]
 
   // Each route might also produce some output
   // that we want to validate as well
   const postware = []
-  
+
   if (config.authentication) {
     preware.push(Middleware.authenticate(config, 'authorization'))
   }

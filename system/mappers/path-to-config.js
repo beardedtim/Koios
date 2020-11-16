@@ -33,8 +33,7 @@ const schema_from_body = (body) => ({
   properties: body,
 })
 
-
-const request_body_from_input = input => {
+const request_body_from_input = (input) => {
   if (!input) {
     return
   }
@@ -49,9 +48,9 @@ const request_body_from_input = input => {
     required: true,
     content: {
       'application/json': {
-        schema: body
-      }
-    }
+        schema: body,
+      },
+    },
   }
 }
 

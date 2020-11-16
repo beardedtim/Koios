@@ -1,0 +1,1 @@
+export const create_sub_system = handler => config => handler(config)
