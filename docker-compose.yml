@@ -1,0 +1,7 @@
+version: '3'
+services:
+  queue:
+    image: redis
+    command: redis-server --requirepass password
+    ports:
+      - "9998:6379"
