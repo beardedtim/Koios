@@ -34,15 +34,27 @@ export const get_queue = (queue_name) => {
 }
 
 export const start = async (config) => {
-  // Given a Config, create the queues needed
-  // and return a way to access those queues
+  
 }
 
 export const stop = async () => {
-  // Stop all know queues
+  for (const queue of queues.values()) {
+    queue.logger.trace('Stopping Queue')
+    await queue.close()
+  }
 }
 
-export const create_system = ({ mappers, server, parser, queues }) => ({
+export const is_healthy = () => Promise.all([
+  ...queues.values()
+].map(queue => queue.isReady()))
+
+/**
+ * Creates the Queues System
+ * 
+ * @param {import('../utils').Config} config
+ * @returns {import('../utils').SubSystem} 
+ */
+export const create_system = ({ mappers, server, parsers, queues }) => ({
   name: 'queues',
   create: () => queues,
   init: () => queues.start(),

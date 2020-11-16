@@ -5,18 +5,11 @@ import * as Env from '../config/env.js'
 const app = express()
 
 export const add_routes = (routes) => {
-  console.log('I called add_routes')
   app.use(routes)
 }
 
 export const add_open_api = (config) => {
-  console.log('I called add_open')
   app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(config))
-}
-
-export const add_async_api = (config) => {
-  console.log('I called add async')
-  app.use('/async-docs', swaggerUI.serve, swaggerUI.setup(config))
 }
 
 export const start = () =>
@@ -30,7 +23,14 @@ export const start = () =>
     })
   })
 
-export const create_system = ({ mappers, server, parser, queues }) => ({
+
+/**
+ * Creates the Server System
+ * 
+ * @param {import('../utils').Config} config
+ * @returns {import('../utils').SubSystem} 
+ */
+export const create_system = ({ mappers, server, parsers, queues }) => ({
   name: 'server',
   create: () => server,
   init: async (sub_systems) => {
