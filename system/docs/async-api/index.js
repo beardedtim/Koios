@@ -1,10 +1,10 @@
 /**
- * Creates the OpenAPI System
+ * Creates the AsyncAPI System
  * 
  * @param {import('../../utils').Config} config
  * @returns {import('../../utils').SubSystem} 
  */
 export const create_system = ({ mappers, server, parsers, queues }) => ({
-    name: 'open_api',
-    create: mappers.ymlToOpenAPI,
+    name: 'async_api',
+    create: mappers.ymlToAsyncAPI,
   })

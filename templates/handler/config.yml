@@ -1,0 +1,12 @@
+# Human-Readable name for this route
+name: Get a Resource
+
+# Human-Readable description for this route
+description: |
+  Gets a resource from the storage system
+
+tags:
+  - Dynamic
+
+input:
+  body:

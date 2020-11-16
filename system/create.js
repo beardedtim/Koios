@@ -8,6 +8,7 @@ import * as Server from './server/index.js'
 import * as Queues from './queues/index.js'
 import * as OpenAPI from './docs/open-api/index.js'
 import * as Router from './router/index.js'
+import * as Handlers from './handlers/index.js'
 
 import * as Utils from './utils.js'
 
@@ -25,6 +26,9 @@ const sub_system_config = [
   ),
   Utils.create_sub_system(
     Queues.create_system
+  ),
+  Utils.create_sub_system(
+    Handlers.create_system
   )
 ]
 

@@ -19,9 +19,11 @@
     "dotenv-flow": "^3.2.0",
     "nodemon": "^2.0.6",
     "pino-pretty": "^4.3.0",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "widdershins": "^4.0.1"
   },
   "dependencies": {
+    "@asyncapi/parser": "^1.1.1",
     "body-parser": "^1.19.0",
     "bull": "^3.18.1",
     "cookie-parser": "^1.4.5",

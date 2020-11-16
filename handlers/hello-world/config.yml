@@ -1,0 +1,18 @@
+name: Hello World Handler
+
+description: |
+  The handler for the hello-world job
+
+tags:
+  - System
+
+input:
+  body:
+    foo:
+      type: string
+      format: email
+      example: I am an example of what you might send in a job
+    bar:
+      type: number
+      example: Another example that isn't required
+    

@@ -1,5 +1,6 @@
-import pathToConfig from './path-to-config.js'
-const OPENAPI_VERSION = '3.0.3'
+import pathToConfig from './path-to-async-config.js'
+
+const ASYNCAPI_VERSION = '2.0.0'
 
 const get_info = (config, meta) => ({
   version: meta.version,
@@ -8,22 +9,25 @@ const get_info = (config, meta) => ({
 })
 
 export default async (config, configPath, meta) => {
-  const servers = [
-    {
+  const servers = {
+    production: {
       url: config.base_url,
       description: 'The base that all requests can be made out of',
-    },
-  ]
+      protocol: "bull",
+      protocolVersion: "3.18.1"
+    }
+  }
 
   const info = get_info(config, meta)
-  const paths = await pathToConfig(config.routes || './routes', configPath)
+  const channels = await pathToConfig(config.handlers || './handlers', configPath)
 
-  return {
+  const async_api = {
     info,
-    openapi: OPENAPI_VERSION,
+    asyncapi: ASYNCAPI_VERSION,
     servers,
-    paths,
-    definitions: config.definitions,
+    channels,
     tags: config.tags,
   }
+
+  return async_api
 }

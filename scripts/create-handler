@@ -1,0 +1,73 @@
+#!/bin/bash
+set -e
+
+# EMOJIS
+WARNING_EMOJI="🚨"
+
+# DEFAULTS
+ROUTES_DIR="$PWD/routes"
+SCRIPT="$PWD/scripts/create-route"
+TEMPLATES_DIR="$PWD/templates"
+VERSION="1"
+METHOD="get"
+
+POSITIONAL=()
+
+# Get Flags
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    -h|--help)
+      echo "$SCRIPT -- Create a new Route"
+      echo "Usage:"
+      echo "$SCRIPT <<FLAGS>> <<Route Path>>"
+      echo ""
+      echo "-h, --help                             Help Menu"
+      echo "-r, --routes-dir                Routes directory"
+      echo "-t, --templates-dir           Template Directory"
+      echo "-m, --method                         HTTP Method"
+      echo "-v, --version                  Version to Add To"
+      exit
+    ;;
+    -r|--routes-dir)
+    ROUTES_DIR="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    -t|--templates-dir)
+      TEMPLATES_DIR="$2"
+      shift
+      shift
+    ;;
+    -v|--version)
+      VERSION="$2"
+      shift
+      shift
+    ;;
+    -m|--method)
+      METHOD=$(echo "$2" | tr '[:upper:]' '[:lower:]')
+      shift
+      shift
+    ;;
+    *)    # unknown option
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+done
+
+# Setting of variables
+ROUTE_NAME=${POSITIONAL[0]}
+ROUTE_PATH="$ROUTES_DIR/v$VERSION/$ROUTE_NAME/$METHOD"
+
+# Actually Copying
+# If it already exists
+if [ -d "$ROUTE_PATH" ]; then
+  echo "$WARNING_EMOJI Route already exists. Skipping"
+  exit 1
+else
+  # Else, copy the template over
+  mkdir -p $ROUTE_PATH
+  cp -R $TEMPLATES_DIR/route/$METHOD/ $ROUTE_PATH/
+fi
