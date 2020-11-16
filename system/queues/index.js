@@ -33,9 +33,7 @@ export const get_queue = (queue_name) => {
   return queue
 }
 
-export const start = async (config) => {
-  
-}
+export const start = async (config) => {}
 
 export const stop = async () => {
   for (const queue of queues.values()) {
@@ -44,15 +42,14 @@ export const stop = async () => {
   }
 }
 
-export const is_healthy = () => Promise.all([
-  ...queues.values()
-].map(queue => queue.isReady()))
+export const is_healthy = () =>
+  Promise.all([...queues.values()].map((queue) => queue.isReady()))
 
 /**
  * Creates the Queues System
- * 
+ *
  * @param {import('../utils').Config} config
- * @returns {import('../utils').SubSystem} 
+ * @returns {import('../utils').SubSystem}
  */
 export const create_system = ({ mappers, server, parsers, queues }) => ({
   name: 'queues',

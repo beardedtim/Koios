@@ -23,12 +23,11 @@ export const start = () =>
     })
   })
 
-
 /**
  * Creates the Server System
- * 
+ *
  * @param {import('../utils').Config} config
- * @returns {import('../utils').SubSystem} 
+ * @returns {import('../utils').SubSystem}
  */
 export const create_system = ({ mappers, server, parsers, queues }) => ({
   name: 'server',

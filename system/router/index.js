@@ -13,9 +13,9 @@ export const create = () => {
 
 /**
  * Creates the Router System
- * 
+ *
  * @param {import('../utils').Config} config
- * @returns {import('../utils').SubSystem} 
+ * @returns {import('../utils').SubSystem}
  */
 export const create_system = ({ mappers, server, parsers, queues }) => ({
   name: 'routes',
